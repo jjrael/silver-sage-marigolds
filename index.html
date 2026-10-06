@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silver Sage Nursery &mdash; Marigolds for Dia de los Muertos</title>
+<style>
+  :root {
+    --marigold: #f2a01e;
+    --marigold-dark: #d9830a;
+    --deep-purple: #3b1f4a;
+    --deep-purple-2: #2a1536;
+    --cream: #fff8ec;
+    --ink: #2a1536;
+    --accent-pink: #e8557a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, var(--deep-purple-2) 0%, var(--deep-purple) 45%, #4a2a5c 100%);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 24px 16px 64px;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+
+  header .emoji-row {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    letter-spacing: 0.3em;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+    margin: 0 0 6px;
+    color: var(--marigold);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  header p.tagline {
+    margin: 0;
+    font-size: 1.05rem;
+    opacity: 0.9;
+  }
+
+  .card {
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    border-top: 6px solid var(--marigold);
+  }
+
+  .card + .card { margin-top: 20px; }
+
+  .card h2 {
+    margin-top: 0;
+    color: var(--deep-purple);
+    font-size: 1.3rem;
+    border-bottom: 2px dashed var(--marigold);
+    padding-bottom: 8px;
+  }
+
+  .pricing {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+
+  .price-pill {
+    flex: 1;
+    min-width: 140px;
+    background: #fff;
+    border: 2px solid var(--marigold);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .price-pill .amount {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--marigold-dark);
+  }
+
+  .price-pill .desc {
+    font-size: 0.9rem;
+    color: var(--ink);
+    opacity: 0.8;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin: 16px 0 6px;
+    color: var(--deep-purple);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #e0d6c3;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fff;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--marigold);
+  }
+
+  .qty-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .qty-row button {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    border: 2px solid var(--marigold);
+    background: #fff;
+    color: var(--marigold-dark);
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .qty-row button:hover { background: var(--marigold); color: #fff; }
+
+  .qty-row input[type="number"] {
+    text-align: center;
+    max-width: 90px;
+  }
+
+  .total-box {
+    margin-top: 20px;
+    background: var(--deep-purple);
+    color: var(--cream);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .total-box .total-amount {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--marigold);
+  }
+
+  .total-box .breakdown {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, var(--marigold), var(--accent-pink));
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover { filter: brightness(1.05); }
+  button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .note {
+    font-size: 0.85rem;
+    color: #6b5a78;
+    margin-top: 10px;
+  }
+
+  .success, .error {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+
+  .success {
+    background: #e7f6e9;
+    color: #256029;
+    border: 2px solid #4caf50;
+  }
+
+  .error {
+    background: #fdecea;
+    color: #a1251b;
+    border: 2px solid #e53935;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--cream);
+    opacity: 0.7;
+    font-size: 0.85rem;
+    margin-top: 32px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="emoji-row">🌼💀🌼</div>
+      <h1>Silver Sage Nursery</h1>
+      <p class="tagline">Marigolds for Dia de los Muertos</p>
+    </header>
+
+    <div class="card">
+      <h2>Our Marigolds</h2>
+      <p>We've grown about 500 one-gallon marigold plants to help you celebrate Dia de los Muertos. Marigolds (<em>cempasuchil</em>) are the traditional flower used to guide spirits home &mdash; bright, fragrant, and ready for your altar or garden.</p>
+      <div class="pricing">
+        <div class="price-pill">
+          <div class="amount">$10</div>
+          <div class="desc">1 one-gallon plant</div>
+        </div>
+        <div class="price-pill">
+          <div class="amount">$25</div>
+          <div class="desc">3 one-gallon plants</div>
+        </div>
+      </div>
+      <p class="note">Pickup only at the nursery &mdash; we'll contact you to arrange a time. Payment is arranged after we confirm your order (cash, Venmo, or card).</p>
+    </div>
+
+    <div class="card">
+      <h2>Place Your Order</h2>
+      <form id="order-form" action="https://formspree.io/f/mjygkvll" method="POST">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="qty">How many plants?</label>
+        <div class="qty-row">
+          <button type="button" id="qty-minus" aria-label="Decrease quantity">&minus;</button>
+          <input type="number" id="qty" name="quantity" min="1" max="100" value="1" required readonly>
+          <button type="button" id="qty-plus" aria-label="Increase quantity">+</button>
+        </div>
+
+        <div class="total-box">
+          <div class="total-amount" id="total-amount">$10</div>
+          <div class="breakdown" id="total-breakdown">1 plant</div>
+        </div>
+        <input type="hidden" name="order_total" id="order-total-hidden" value="10">
+        <input type="hidden" name="_subject" value="New marigold order from Silver Sage Nursery site">
+
+        <label for="notes">Notes (optional)</label>
+        <input type="text" id="notes" name="notes" placeholder="Preferred pickup day/time, questions, etc.">
+
+        <button type="submit" id="submit-btn">Submit Order</button>
+      </form>
+
+      <div class="success" id="success-msg">
+        🌼 Thank you! Your order has been sent. We'll reach out to confirm details and arrange pickup/payment.
+      </div>
+      <div class="error" id="error-msg">
+        Something went wrong sending your order. Please try again, or email us directly.
+      </div>
+    </div>
+
+    <footer>
+      Silver Sage Nursery &middot; Grown with love for Dia de los Muertos 🌼
+    </footer>
+  </div>
+
+<script>
+  const qtyInput = document.getElementById('qty');
+  const totalAmountEl = document.getElementById('total-amount');
+  const totalBreakdownEl = document.getElementById('total-breakdown');
+  const totalHiddenEl = document.getElementById('order-total-hidden');
+
+  function priceFor(qty) {
+    const bundles = Math.floor(qty / 3);
+    const leftover = qty % 3;
+    return bundles * 25 + leftover * 10;
+  }
+
+  function describe(qty) {
+    const bundles = Math.floor(qty / 3);
+    const leftover = qty % 3;
+    const parts = [];
+    if (bundles > 0) parts.push(bundles + ' bundle' + (bundles > 1 ? 's' : '') + ' of 3 ($25 each)');
+    if (leftover > 0) parts.push(leftover + ' single plant' + (leftover > 1 ? 's' : '') + ' ($10 each)');
+    return parts.join(' + ') || '';
+  }
+
+  function updateTotal() {
+    let qty = parseInt(qtyInput.value, 10);
+    if (isNaN(qty) || qty < 1) qty = 1;
+    if (qty > 100) qty = 100;
+    qtyInput.value = qty;
+    const total = priceFor(qty);
+    totalAmountEl.textContent = '$' + total;
+    totalBreakdownEl.textContent = qty + ' plant' + (qty > 1 ? 's' : '') + (describe(qty) ? ' — ' + describe(qty) : '');
+    totalHiddenEl.value = total;
+  }
+
+  document.getElementById('qty-minus').addEventListener('click', () => {
+    qtyInput.value = Math.max(1, parseInt(qtyInput.value, 10) - 1);
+    updateTotal();
+  });
+  document.getElementById('qty-plus').addEventListener('click', () => {
+    qtyInput.value = Math.min(100, parseInt(qtyInput.value, 10) + 1);
+    updateTotal();
+  });
+
+  updateTotal();
+
+  const form = document.getElementById('order-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('success-msg');
+  const errorMsg = document.getElementById('error-msg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (err) {
+      errorMsg.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Order';
+    }
+  });
+</script>
+</body>
+</html>

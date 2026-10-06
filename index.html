@@ -116,6 +116,33 @@
     margin-top: 10px;
   }
 
+  .payment-list {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 16px;
+  }
+
+  @media (max-width: 480px) {
+    .payment-list { grid-template-columns: 1fr; }
+  }
+
+  .payment-list li {
+    font-size: 0.88rem;
+    color: var(--ink);
+    padding: 6px 10px;
+    background: #fff;
+    border: 1px solid var(--cadet-blue);
+    border-radius: 7px;
+  }
+
+  .payment-list .mono {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-weight: 600;
+  }
+
   .card.info em {
     color: var(--steel-blue);
     font-style: normal;
@@ -166,7 +193,13 @@
           <div class="desc">3 one-gallon plants</div>
         </div>
       </div>
-      <p class="note">Pickup only at the nursery &mdash; we'll contact you to arrange a time. Payment is arranged after we confirm your order (cash, Venmo, or card).</p>
+      <p class="note">Pickup only at the nursery &mdash; we'll contact you to arrange a time. Payment is arranged after we confirm your order.</p>
+      <ul class="payment-list">
+        <li>Cash</li>
+        <li>Venmo &mdash; <span class="mono">@JacobFromABQ</span></li>
+        <li>Zelle &mdash; <span class="mono">310-384-0997</span></li>
+        <li>Credit/debit card, Apple Pay, or Google Pay at pickup</li>
+      </ul>
     </div>
 
     <div class="card order">

@@ -6,12 +6,17 @@
 <title>Silver Sage Nursery &mdash; Marigolds for Dia de los Muertos</title>
 <style>
   :root {
-    --marigold: #f2a01e;
-    --marigold-dark: #d9830a;
-    --deep-purple: #3b1f4a;
-    --deep-purple-2: #2a1536;
-    --cream: #fff8ec;
-    --ink: #2a1536;
+    --shingle-fawn: #725932;
+    --anzac: #e0b043;
+    --anzac-dark: #b9873a;
+    --steel-blue: #4f88c4;
+    --cadet-blue: #a8bcc7;
+    --sushi: #819d2f;
+    --sushi-dark: #647824;
+    --surface: #fbf7ee;
+    --cream-text: #f3ecdd;
+    --ink: #2a2014;
+    --ink-muted: #6b5a46;
   }
 
   * { box-sizing: border-box; }
@@ -19,7 +24,7 @@
   body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(180deg, var(--deep-purple-2) 0%, var(--deep-purple) 45%, #4a2a5c 100%);
+    background: linear-gradient(180deg, #2e2515 0%, #4a3a20 45%, #362c1a 100%);
     color: var(--ink);
     min-height: 100vh;
     padding: 24px 16px 64px;
@@ -32,7 +37,7 @@
 
   header {
     text-align: center;
-    color: var(--cream);
+    color: var(--cream-text);
     margin-bottom: 24px;
   }
 
@@ -45,7 +50,7 @@
   header h1 {
     font-size: 1.8rem;
     margin: 0 0 6px;
-    color: var(--marigold);
+    color: var(--anzac);
     text-shadow: 0 2px 10px rgba(0,0,0,0.3);
   }
 
@@ -56,20 +61,23 @@
   }
 
   .card {
-    background: var(--cream);
+    background: var(--surface);
     border-radius: 16px;
     padding: 28px 24px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-    border-top: 6px solid var(--marigold);
+    border-top: 6px solid var(--card-accent, var(--anzac));
   }
 
   .card + .card { margin-top: 20px; }
 
+  .card.info { --card-accent: var(--anzac); }
+  .card.order { --card-accent: var(--sushi); }
+
   .card h2 {
     margin-top: 0;
-    color: var(--deep-purple);
+    color: var(--ink);
     font-size: 1.3rem;
-    border-bottom: 2px dashed var(--marigold);
+    border-bottom: 2px dashed var(--card-accent, var(--anzac));
     padding-bottom: 8px;
   }
 
@@ -84,7 +92,7 @@
     flex: 1;
     min-width: 140px;
     background: #fff;
-    border: 2px solid var(--marigold);
+    border: 2px solid var(--anzac);
     border-radius: 12px;
     padding: 14px;
     text-align: center;
@@ -93,7 +101,7 @@
   .price-pill .amount {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--marigold-dark);
+    color: var(--anzac-dark);
   }
 
   .price-pill .desc {
@@ -104,13 +112,21 @@
 
   .note {
     font-size: 0.85rem;
-    color: #6b5a78;
+    color: var(--ink-muted);
     margin-top: 10px;
+  }
+
+  .card.info em {
+    color: var(--steel-blue);
+    font-style: normal;
+    font-weight: 600;
   }
 
   .form-embed {
     width: 100%;
     overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid var(--cadet-blue);
   }
 
   .form-embed iframe {
@@ -122,7 +138,7 @@
 
   footer {
     text-align: center;
-    color: var(--cream);
+    color: var(--cream-text);
     opacity: 0.7;
     font-size: 0.85rem;
     margin-top: 32px;
@@ -137,7 +153,7 @@
       <p class="tagline">Marigolds for Dia de los Muertos</p>
     </header>
 
-    <div class="card">
+    <div class="card info">
       <h2>Our Marigolds</h2>
       <p>We've grown about 500 one-gallon marigold plants to help you celebrate Dia de los Muertos. Marigolds (<em>cempasuchil</em>) are the traditional flower used to guide spirits home &mdash; bright, fragrant, and ready for your altar or garden.</p>
       <div class="pricing">
@@ -153,7 +169,7 @@
       <p class="note">Pickup only at the nursery &mdash; we'll contact you to arrange a time. Payment is arranged after we confirm your order (cash, Venmo, or card).</p>
     </div>
 
-    <div class="card">
+    <div class="card order">
       <h2>Place Your Order</h2>
       <p class="note">Fill out the form below. We'll follow up by email or phone to confirm your order, arrange pickup, and take payment.</p>
       <div class="form-embed">
